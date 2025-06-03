@@ -7,6 +7,10 @@
 Super Voice Bros é um jogo de plataforma 2D no estilo clássico de Mario Bros, com um diferencial inovador: o jogador controla o personagem utilizando comandos de voz. O objetivo é atravessar mundos perigosos e cheios de inimigos usando apenas a voz, exigindo clareza e precisão nos comandos falados.
 ### 2. Descrição Detalhada do Projeto
 
+### Referência Criativa
+Super Voice Bros é um jogo de plataforma fortemente inspirado no clássico Super Mario Bros, cuja criatividade, estilo visual e mecânicas marcaram profundamente a história dos videogames. Nosso projeto surge como uma homenagem a esse ícone, trazendo elementos similares — como a progressão por fases, os desafios com obstáculos e inimigos, e o estilo visual retrô —, mas com uma proposta inovadora: o controle por voz.
+
+Neste jogo, o jogador realiza ações como correr, pular e interagir com o ambiente por meio de comandos vocais, o que proporciona uma experiência interativa única e desafiadora. Super Voice Bros busca unir a nostalgia dos jogos clássicos com a inovação tecnológica atual, oferecendo uma releitura moderna de uma fórmula consagrada.
 #### O que é o Super Voice Bros?
 
 Super Voice Bros é um jogo de plataforma onde o personagem é controlado unicamente pela voz. Utilizando bibliotecas de reconhecimento de fala, o jogo responde a comandos vocais como "pular", "correr", "parar" e outros, oferecendo uma experiência imersiva e acessível.
