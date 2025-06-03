@@ -37,46 +37,42 @@ Super Voice Bros é um jogo de plataforma onde o personagem é controlado unicam
 Os personagens de Super Voice Bros foram criados com base em arquétipos clássicos de jogos de plataforma, especialmente do universo Super Mario Bros, mas adaptados à proposta vocal do jogo. Cada personagem tem um nome marcante, fácil de lembrar e relacionado ao conceito de som, fala ou interferência. A seguir, apresentamos os personagens principais:
 
 **Voko – O Herói**
-* Função: Protagonista controlado por comandos de voz
-* Inspiração: Mario
-* Design sugerido:
-* Corpo simples (retângulo ou oval)
-* Cabeça com boné e fone de ouvido
-* Olhos e boca expressivos
-* Paleta: vermelho, azul e branco
+ * Função: Protagonista controlado por comandos de voz
+ * Inspiração: Mario
+ * Design sugerido:
+ * Corpo simples (retângulo ou oval)
+ * Cabeça com boné e fone de ouvido
+ * Olhos e boca expressivos
+ * Paleta: vermelho, azul e branco
 
 **Glitchy – Inimigo Comum**
-* Função: Obstáculo básico nas fases
-* Inspiração: Goomba
-* Design sugerido:
-* Forma: quadrado ou retângulo distorcido
-* Textura: efeito de “pixels quebrados” ou estática
-* Cores: cinza, preto e vermelho
-* Animação: tremores ou piscadas
+ * Função: Obstáculo básico nas fases
+ * Inspiração: Goomba
+ * Design sugerido:
+ * Forma: quadrado ou retângulo distorcido
+ * Textura: efeito de “pixels quebrados” ou estática
+ * Cores: cinza, preto e vermelho
+ * Animação: tremores ou piscada
 
-Buzzik – Inimigo Voador
-Função: Inimigo aéreo que interfere com comandos
-Inspiração: Koopa voador
-Design sugerido:
-Forma: oval com asas triangulares
-Detalhes: linhas de som saindo da boca
-Cores: amarelo, laranja e branco
-Movimento: voa em padrão de onda
+**Buzzik – Inimigo Voador**
+ * Função: Inimigo aéreo que interfere com comandos
+ * Inspiração: Koopa voador
+ * Design sugerido:
+ * Forma: oval com asas triangulares
+ * Detalhes: linhas de som saindo da boca
+ * Cores: amarelo, laranja e branco
+ * Movimento: voa em padrão de onda
+  
 
-🔇 Mutez – Vilão Principal
-Função: Chefe final que tenta silenciar todos os mundos
-
-Inspiração: Bowser
-
-Design sugerido:
-
-Corpo: grande retângulo ou quadrado com expressão intimidadora
-
-Boca: símbolo de "mute" (um X ou risco sobre os lábios)
-
-Cores: preto, roxo escuro, vermelho
-
-Animação: pode lançar “ondas de silêncio” (efeitos visuais simples)
+**Mutez – Vilão Principal**
+ * Função: Chefe final que tenta silenciar todos os mundos
+ * Inspiração: Bowser
+ * Design sugerido:
+ * Corpo: grande retângulo ou quadrado com expressão intimidadora
+ * Boca: símbolo de "mute" (um X ou risco sobre os lábios)
+ * Cores: preto, roxo escuro, vermelho
+ * Animação: pode lançar “ondas de silêncio” (efeitos visuais simples)
+   
 #### 2.3 Arquitetura do Código
 
 ```plaintext
