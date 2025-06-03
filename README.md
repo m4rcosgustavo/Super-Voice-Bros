@@ -5,13 +5,20 @@
 
 **Descrição:**
 Super Voice Bros é um jogo de plataforma 2D no estilo clássico de Mario Bros, com um diferencial inovador: o jogador controla o personagem utilizando comandos de voz. O objetivo é atravessar mundos perigosos e cheios de inimigos usando apenas a voz, exigindo clareza e precisão nos comandos falados.
+
+---
+
 ### 2. Descrição Detalhada do Projeto
 
 ### Referência Criativa
 Super Voice Bros é um jogo de plataforma fortemente inspirado no clássico Super Mario Bros, cuja criatividade, estilo visual e mecânicas marcaram profundamente a história dos videogames. Nosso projeto surge como uma homenagem a esse ícone, trazendo elementos similares — como a progressão por fases, os desafios com obstáculos e inimigos, e o estilo visual retrô —, mas com uma proposta inovadora: o controle por voz.
 
 Neste jogo, o jogador realiza ações como correr, pular e interagir com o ambiente por meio de comandos vocais, o que proporciona uma experiência interativa única e desafiadora. Super Voice Bros busca unir a nostalgia dos jogos clássicos com a inovação tecnológica atual, oferecendo uma releitura moderna de uma fórmula consagrada.
-#### O que é o Super Voice Bros?
+
+### Acessibilidade e Inclusão
+Super Voice Bros não é apenas uma releitura moderna de um clássico; ele também representa um avanço em acessibilidade nos jogos eletrônicos. O controle por voz pode beneficiar jogadores com limitações motoras, além de tornar a experiência mais inclusiva e interativa. O jogo busca se adaptar a diferentes tons de voz e ambientes, proporcionando jogabilidade estável para uma ampla gama de usuários.
+
+### O que é o Super Voice Bros?
 
 Super Voice Bros é um jogo de plataforma onde o personagem é controlado unicamente pela voz. Utilizando bibliotecas de reconhecimento de fala, o jogo responde a comandos vocais como "pular", "correr", "parar" e outros, oferecendo uma experiência imersiva e acessível.
 #### 2.1 Funcionalidades Principais
@@ -91,6 +98,9 @@ super_voice_bros/
 │   └── fonts/
 └── utils.py              # Funções auxiliares e ferramentas
 ```
+
+---
+
 ### 3. Etapas de Entrega (Cronograma Detalhado)
 
 #### Etapa 1: Protótipo Básico (Semanas 1-2)
@@ -108,6 +118,8 @@ super_voice_bros/
 * Melhorias nos gráficos e sons
 * Ajustes na sensibilidade de voz
 * Fases com aumento de dificuldade
+
+---
   
 #### Etapa 4: Testes e Entrega Final (Semana 6)
 * Correção de bugs
