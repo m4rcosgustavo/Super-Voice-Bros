@@ -72,6 +72,7 @@ Os personagens de Super Voice Bros foram criados com base em arquétipos clássi
  * Boca: símbolo de "mute" (um X ou risco sobre os lábios)
  * Cores: preto, roxo escuro, vermelho
  * Animação: pode lançar “ondas de silêncio” (efeitos visuais simples)
+   
 _**Importante: Mutez aparece na fase bônus final do jogo, tornando essa fase o grande desafio final. A fase bônus é o "chefão" oculto do jogo: complexa, imprevisível e repleta de obstáculos sonoros que testam tudo o que o jogador aprendeu. Ela representa o verdadeiro clímax da jornada vocal.**_
    
 #### 2.3 Arquitetura do Código
