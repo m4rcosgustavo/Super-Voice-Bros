@@ -303,7 +303,7 @@ class MainMenu:
             btn.draw(self.screen)
         
         year = datetime.datetime.now().year
-        footer = Config.FONT_SMALL.render(f"© {year} Marcos Gustavo — IFRN CAICÓ", True, (220, 220, 220))
+        footer = Config.FONT_SMALL.render(f"© {year} Marcos Gustavo e Jullyane Sandra — IFRN CAICÓ", True, (220, 220, 220))
         footer_rect = footer.get_rect(center=(Config.SCREEN_WIDTH // 2, self.container_rect.bottom - 30))
         self.screen.blit(footer, footer_rect)
     
