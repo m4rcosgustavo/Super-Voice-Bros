@@ -2,6 +2,7 @@ import pygame
 import sys
 import datetime
 from typing import Callable, List, Optional, Tuple
+from game.scene import TestScene
 
 # --------- Configurações Globais ---------
 class Config:
@@ -18,10 +19,10 @@ class Config:
     BG_OVERLAY = (0, 0, 0, 180)
     
     # Caminhos dos assets
-    BG_IMAGE_PATH = "fundo1.png"
-    LOGO_IMAGE_PATH = "logo00.png"
+    BG_IMAGE_PATH = "src/assets/images/fundo1.png"
+    LOGO_IMAGE_PATH = "src/assets/images/logo00.png"
     FONT_PATH = "PressStart2P.ttf"
-    MUSIC_PATH = "super_mario_theme.mp3"
+    MUSIC_PATH = "src/assets/sounds/super_mario_theme.mp3"
 
 # --------- Classe Button Aprimorada ---------
 class Button:
@@ -209,7 +210,11 @@ class MainMenu:
             return pygame.transform.smoothscale(image, size)
         except:
             print(f"Erro ao carregar imagem: {path}")
-            return None
+            # Retorna uma surface padrão se a imagem não carregar
+            surface = pygame.Surface(size, pygame.SRCALPHA) if alpha else pygame.Surface(size)
+            if not alpha:
+                surface.fill((50, 50, 70))
+            return surface
     
     def _setup_layout(self):
         """Configura o layout do menu"""
@@ -220,14 +225,23 @@ class MainMenu:
         )
         
         self.buttons = [
-            Button("JOGAR", (0, self.container_rect.y + 200), self.show_instructions),
-            Button("PERSONAGENS", (0, self.container_rect.y + 260), self.show_characters),
-            Button("CONFIGURAÇÕES", (0, self.container_rect.y + 320), self.show_settings),
-            Button("CRÉDITOS", (0, self.container_rect.y + 380), self.show_credits),
+            Button("JOGAR", (0, self.container_rect.y + 200), self.start_game),
+            Button("TESTE MOVIMENTAÇÃO", (0, self.container_rect.y + 260), self.start_test_scene),
+            Button("PERSONAGENS", (0, self.container_rect.y + 320), self.show_characters),
+            Button("INSTRUÇÕES", (0, self.container_rect.y + 380), self.show_instructions),
+            Button("CRÉDITOS", (0, self.container_rect.y + 440), self.show_credits),
         ]
         
         for btn in self.buttons:
             btn.center_x(Config.SCREEN_WIDTH // 2)
+    
+    def start_game(self):
+        """Inicia o jogo principal"""
+        self._show_temp_message("Jogo principal em desenvolvimento!")
+    
+    def start_test_scene(self):
+        """Inicia a cena de teste de movimentação"""
+        self.running = False  # Sai do menu para entrar na cena de teste
     
     def show_instructions(self):
         """Mostra a tela de instruções"""
@@ -236,9 +250,6 @@ class MainMenu:
     
     def show_characters(self):
         self._show_temp_message("Seleção de personagens!")
-    
-    def show_settings(self):
-        self._show_temp_message("Configurações do jogo")
     
     def show_credits(self):
         year = datetime.datetime.now().year
@@ -262,6 +273,7 @@ class MainMenu:
         self.render()  # Redesenha o menu
     
     def handle_events(self):
+        """Processa eventos do menu"""
         mouse_click = False
         mouse_pos = pygame.mouse.get_pos()
         
@@ -271,27 +283,37 @@ class MainMenu:
                 sys.exit()
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 mouse_click = True
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    self.running = False
+                    return "quit"
         
         for btn in self.buttons:
             if btn.update(mouse_pos, mouse_click):
                 btn.callback()
+        
+        return None
     
     def render(self):
         """Renderiza todos os elementos do menu"""
+        # Fundo
         if self.bg_image:
             self.screen.blit(self.bg_image, (0, 0))
         else:
             self.screen.fill((30, 30, 30))
         
+        # Overlay do container
         overlay = pygame.Surface((self.container_rect.width, self.container_rect.height), pygame.SRCALPHA)
         overlay.fill(Config.BG_OVERLAY)
         self.screen.blit(overlay, (self.container_rect.topleft))
         
+        # Logo
         if self.logo_image:
             logo_pos = (Config.SCREEN_WIDTH // 2 - self.logo_image.get_width() // 2, 
                         self.container_rect.y + 20)
             self.screen.blit(self.logo_image, logo_pos)
         
+        # Título
         title = Config.FONT_MAIN.render("Super Voice Bros", True, Config.ACCENT)
         title_rect = title.get_rect(center=(Config.SCREEN_WIDTH // 2, self.container_rect.y + 180))
         
@@ -299,9 +321,11 @@ class MainMenu:
         self.screen.blit(shadow, (title_rect.x + 3, title_rect.y + 3))
         self.screen.blit(title, title_rect)
         
+        # Botões
         for btn in self.buttons:
             btn.draw(self.screen)
         
+        # Rodapé
         year = datetime.datetime.now().year
         footer = Config.FONT_SMALL.render(f"© {year} Marcos Gustavo e Jullyane Sandra — IFRN CAICÓ", True, (220, 220, 220))
         footer_rect = footer.get_rect(center=(Config.SCREEN_WIDTH // 2, self.container_rect.bottom - 30))
@@ -310,57 +334,55 @@ class MainMenu:
     def run(self):
         """Executa o loop principal do menu"""
         while self.running:
-            self.handle_events()
+            result = self.handle_events()
+            if result == "quit":
+                return "quit"
+                
             self.render()
             pygame.display.flip()
             self.clock.tick(Config.FPS)
+        
+        return "test"  # Vai para a cena de teste
 
 # --------- Classe Principal do Jogo ---------
 class Game:
     def __init__(self):
         pygame.init()
-        pygame.mixer.init()  # Inicializa o mixer de áudio
+        pygame.mixer.init()
         self.screen = pygame.display.set_mode((Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT))
         pygame.display.set_caption("Super Voice Bros | Jogo de Aventura com Voz")
+        self.current_scene = "menu"  # Controla a cena atual
         self._load_music()
     
     def _load_music(self):
         """Carrega e configura a música de fundo"""
         try:
             pygame.mixer.music.load(Config.MUSIC_PATH)
-            pygame.mixer.music.set_volume(0.5)  # Volume entre 0.0 e 1.0
-            pygame.mixer.music.play(-1)  # -1 faz a música repetir indefinidamente
+            pygame.mixer.music.set_volume(0.5)
+            pygame.mixer.music.play(-1)
         except pygame.error as e:
             print(f"Erro ao carregar música: {e}")
     
     def run(self):
-        """Inicia o jogo com o menu principal"""
-        menu = MainMenu(self.screen)
-        menu.run()
-        self.game_loop()
-    
-    def game_loop(self):
-        """Loop principal do jogo"""
-        running = True
-        clock = pygame.time.Clock()
+        """Loop principal do jogo com gerenciamento de cenas"""
+        while True:
+            if self.current_scene == "menu":
+                menu = MainMenu(self.screen)
+                result = menu.run()
+                self.current_scene = result if result else "test"
+                
+            elif self.current_scene == "test":
+                test_scene = TestScene(self.screen)
+                result = test_scene.run()
+                self.current_scene = result if result else "menu"
+                
+            elif self.current_scene == "quit":
+                break
         
-        while running:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    running = False
-            
-            self.screen.fill((30, 30, 30))
-            text = Config.FONT_MAIN.render("Jogo Principal", True, (255, 255, 255))
-            text_rect = text.get_rect(center=(Config.SCREEN_WIDTH // 2, Config.SCREEN_HEIGHT // 2))
-            self.screen.blit(text, text_rect)
-            
-            pygame.display.flip()
-            clock.tick(Config.FPS)
-        
-        pygame.mixer.music.stop()  # Para a música quando o jogo encerrar
+        pygame.mixer.music.stop()
         pygame.quit()
+        sys.exit()
 
 if __name__ == "__main__":
     game = Game()
     game.run()
-
