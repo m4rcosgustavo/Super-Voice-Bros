@@ -224,23 +224,19 @@ class MainMenu:
             800, 500
         )
         
+        # Botão removido: "TESTE MOVIMENTAÇÃO"
         self.buttons = [
             Button("JOGAR", (0, self.container_rect.y + 200), self.start_game),
-            Button("TESTE MOVIMENTAÇÃO", (0, self.container_rect.y + 260), self.start_test_scene),
-            Button("PERSONAGENS", (0, self.container_rect.y + 320), self.show_characters),
-            Button("INSTRUÇÕES", (0, self.container_rect.y + 380), self.show_instructions),
-            Button("CRÉDITOS", (0, self.container_rect.y + 440), self.show_credits),
+            Button("PERSONAGENS", (0, self.container_rect.y + 260), self.show_characters),
+            Button("INSTRUÇÕES", (0, self.container_rect.y + 320), self.show_instructions),
+            Button("CRÉDITOS", (0, self.container_rect.y + 380), self.show_credits),
         ]
         
         for btn in self.buttons:
             btn.center_x(Config.SCREEN_WIDTH // 2)
     
     def start_game(self):
-        """Inicia o jogo principal"""
-        self._show_temp_message("Jogo principal em desenvolvimento!")
-    
-    def start_test_scene(self):
-        """Inicia a cena de teste de movimentação"""
+        """Inicia o jogo principal - agora vai direto para a cena de teste"""
         self.running = False  # Sai do menu para entrar na cena de teste
     
     def show_instructions(self):
